@@ -5,7 +5,7 @@ from pyspark.sql.types import *
 
 if __name__ == "__main__":
 
-    spark = SparkSession.builder.appName("blah").getOrCreate()
+    spark = SparkSession.builder.appName("data2insights").getOrCreate()
 
     schema = StructType(
         [
