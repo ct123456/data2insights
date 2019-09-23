@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     sqlContext = SQLContext(spark)
 
-    s3_input_file_location = "s3a://data2insights/NPPES/parquet/npi_subset_10000"
+    s3_input_file_location = "s3a://data2insights/NPPES/parquet/npi_subset_clean_zipcode"
     s3_output_file_location = "s3a://data2insights/zipcode/parquet/zipcode_from_npi"
 
     npi_df = sqlContext.read.parquet(s3_input_file_location)
