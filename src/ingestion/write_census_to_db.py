@@ -13,6 +13,11 @@ if __name__ == "__main__":
     )
 
     df = sqlContext.read.parquet(s3_input_file_location)
-    df.write.mode("append").jdbc(db_config.url, db_config.table, db_config.properties)
+
+    df.write.format("jdbc").mode("append").option("driver", db_config.driver).option(
+        "url", db_config.url
+    ).option("dbtable", db_config.table).option("user", db_config.user).option(
+        "password", db_config.password
+    ).save()
 
     spark.stop()
