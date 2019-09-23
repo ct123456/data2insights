@@ -7,7 +7,7 @@ if __name__ == "__main__":
     spark = SparkSession.builder.appName("data2insights").getOrCreate()
     sqlContext = SQLContext(spark)
 
-    db_config = DbConfig(db_name="healthcare", db_table="public.hcp")
+    db_config = DbConfig(db_name="healthcare", db_table="public.npi_hcp")
 
     s3_input_file_location = (
         "s3a://data2insights/NPPES/parquet/npi_hcp_subset"
