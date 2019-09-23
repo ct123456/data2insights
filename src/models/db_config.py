@@ -10,7 +10,7 @@ class DbConfig(object):
         self.password = os.environ['DB_PASSWORD']
         self.table = db_table
 
-        self.url = "jdbc:postgresql://{db_host}/{db_name}".format(db_host=self.db_host, db_name=db_name)
+        self.url = "jdbc:postgresql://{db_host}/{db_name}".format(db_host=self.host, db_name=db_name)
 
     @property
     def properties(self):
