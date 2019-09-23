@@ -14,7 +14,7 @@ if __name__ == "__main__":
     npi_df = sqlContext.read.parquet(s3_input_file_location)
     zipcode_df = (
         npi_df.select(["npi", "entity_type_code", "zip5"])
-        .groupBy("zip5", "entity_type_id")
+        .groupBy("zip5", "entity_type_code")
         .agg(F.countDistinct("npi").alias("count"))
     )
     Utils.write_df_to_s3(zipcode_df, s3_output_file_location)
