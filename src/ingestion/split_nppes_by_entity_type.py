@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     sqlContext = SQLContext(spark)
 
-    s3_input_file_location = "s3a://data2insights/NPPES/parquet/npi_subset_10000"
+    s3_input_file_location = "s3a://data2insights/NPPES/parquet/npi_subset_clean_zipcode"
 
     s3_hcp_output_file_location = "s3a://data2insights/NPPES/parquet/npi_hcp_subset"
     s3_hco_output_file_location = "s3a://data2insights/NPPES/parquet/npi_hco_subset"
