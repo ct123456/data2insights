@@ -1,5 +1,5 @@
 import pyspark.sql.functions as F
-from lib.zip_utils import get_zip5
+from src.lib.zip_utils import get_zip5
 
 
 def convert_csvs_to_parquet(spark, s3_input, s3_output, schema=None):
