@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession, SQLContext
 from src.models.db_config import DbConfig
+import src.lib.db_utils as DbUtils
 
 if __name__ == "__main__":
 
@@ -13,11 +14,6 @@ if __name__ == "__main__":
     )
 
     df = sqlContext.read.parquet(s3_input_file_location)
-
-    df.write.format("jdbc").mode("append").option("driver", db_config.driver).option(
-        "url", db_config.url
-    ).option("dbtable", db_config.table).option("user", db_config.user).option(
-        "password", db_config.password
-    ).save()
+    DbUtils.insert(db_config=db_config, dataframe=df)
 
     spark.stop()
