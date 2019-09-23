@@ -20,6 +20,6 @@ if __name__ == "__main__":
     npi_hco_subset_df = npi_subset_df.where(npi_subset_df.entity_type_code == 2)
 
     Utils.write_df_to_s3(npi_hcp_subset_df, s3_hcp_output_file_location)
-    Utils.write_df_to_s3(npi_hcp_subset_df, s3_hco_output_file_location)
+    Utils.write_df_to_s3(npi_hco_subset_df, s3_hco_output_file_location)
 
     spark.stop()
