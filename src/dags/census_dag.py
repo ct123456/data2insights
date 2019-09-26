@@ -2,6 +2,8 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
+import sys
+sys.path.insert(0,"~/ubuntu/data2insights/src")
 from src.models.spark_config import SparkConfig
 
 dag = DAG(
