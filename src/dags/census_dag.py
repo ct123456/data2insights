@@ -24,7 +24,7 @@ convert_census_to_parquet = BashOperator(
 
 clean_zipcode_census_spark_config = SparkConfig("clean_census_zipcode.py")
 clean_zipcode_census = BashOperator(
-    task_id="convert_census_to_parquet",
+    task_id="clean_zipcode_census",
     bash_command=clean_zipcode_census_spark_config.bash_command,
     retries=1,
     dag=dag,
@@ -32,7 +32,7 @@ clean_zipcode_census = BashOperator(
 
 write_census_to_db_spark_config = SparkConfig("write_census_to_db.py")
 write_census_to_db = BashOperator(
-    task_id="convert_census_to_parquet",
+    task_id="write_census_to_db",
     bash_command=write_census_to_db_spark_config.bash_command,
     retries=1,
     dag=dag,
