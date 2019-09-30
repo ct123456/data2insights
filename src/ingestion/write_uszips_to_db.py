@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     db_config = DbConfig(db_name="healthcare", db_table="public.uszips")
 
-    s3_input_file_location = "s3a://data2insights/zipcode/parquet/uszips"
+    s3_input_file_location = "s3a://data2insights/uszips/parquet/uszips"
 
     df = sqlContext.read.parquet(s3_input_file_location)
 
