@@ -4,7 +4,9 @@ STANDARD_ZIP5_PLUS4_LENGTH = 9
 
 def get_zip5(zipcode_string):
     default_zip5 = ""
-    zipcode_string = str(zipcode_string)
+    if zipcode_string is not None:
+        zipcode_string = zipcode_string.encode("utf-8").strip()
+
     if not isinstance(zipcode_string, str):
         return default_zip5
 
@@ -13,8 +15,6 @@ def get_zip5(zipcode_string):
 
     if len(zipcode_string) < STANDARD_ZIP5_LENGTH:
         return add_leading_zeros_to_zipcode(zipcode_string)
-
-    return zipcode_string[:STANDARD_ZIP5_LENGTH]
 
 
 def get_plus4(zipcode_string):

@@ -2,8 +2,6 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 
-import sys
-sys.path.insert(0,"~/ubuntu/data2insights/src")
 from src.models.spark_config import SparkConfig
 
 dag = DAG(
@@ -22,7 +20,7 @@ convert_census_to_parquet = BashOperator(
     dag=dag,
 )
 
-clean_zipcode_census_spark_config = SparkConfig("clean_census_zipcode.py")
+clean_zipcode_census_spark_config = SparkConfig("clean_zipcode_census.py")
 clean_zipcode_census = BashOperator(
     task_id="clean_zipcode_census",
     bash_command=clean_zipcode_census_spark_config.bash_command,

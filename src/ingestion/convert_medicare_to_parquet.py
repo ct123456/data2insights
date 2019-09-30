@@ -1,7 +1,6 @@
 from pyspark.sql import SparkSession, SQLContext
-import src.lib.utils as Utils
 from pyspark.sql.types import *
-
+import lib.utils as Utils
 
 if __name__ == "__main__":
 

@@ -29,8 +29,11 @@ def read_csvs_from_s3(spark, s3_path_files_location, schema=None):
     return dataframe
 
 
-def write_df_to_s3(dataframe, s3_path_file_location):
-    dataframe.write.save(s3_path_file_location, format="parquet", mode="overwrite")
+def write_df_to_s3(dataframe, s3_path_file_location, partition_by=None):
+    if partition_by is not None:
+       dataframe.write.partitionBy(partition_by).save(s3_path_file_location, format="parquet", mode="overwrite")
+    else:
+       dataframe.write.save(s3_path_file_location, format="parquet", mode="overwrite")
 
 
 def clean_columns(dataframe):
