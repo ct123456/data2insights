@@ -15,8 +15,9 @@ class ProviderRepository(object):
             provider_business_mailing_address_city_name city,
             provider_business_mailing_address_state_name state,
             zip5 zip_code,
-            provider_gender_code gender
-        FROM npi_hcp hcp
+            provider_gender_code gender,
+            hcp_medicare_count medicare_count
+        FROM provider hcp
         WHERE hcp.npi='{npi}'
         """.format(
             npi=npi
@@ -38,7 +39,8 @@ class ProviderRepository(object):
                     "city": row[6],
                     "state": row[7],
                     "zip_code": row[8],
-                    "gender": row[9]
+                    "gender": row[9],
+                    "medicare_count": row[10]
                 }
             )
 
@@ -56,8 +58,9 @@ class ProviderRepository(object):
                     provider_business_mailing_address_city_name city,
                     provider_business_mailing_address_state_name state,
                     zip5 zip_code,
-                    provider_gender_code gender
-                FROM npi_hcp hcp
+                    provider_gender_code gender,
+                    hcp_medicare_count medicare_count
+                FROM provider hcp
                 WHERE hcp.zip5='{zipcode}'
                 LIMIT {limit}
                 OFFSET {offset}
@@ -83,7 +86,8 @@ class ProviderRepository(object):
                     "city": row[6],
                     "state": row[7],
                     "zip_code": row[8],
-                    "gender": row[9]
+                    "gender": row[9],
+                    "medicare_count": row[10]
                 }
             )
 
