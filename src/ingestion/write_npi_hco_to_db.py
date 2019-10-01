@@ -14,7 +14,7 @@ if __name__ == "__main__":
     )
 
     limit = 10000000
-    cols = ["npi", "entity_type_code", "provider_organization_name_legal_business_name", "zip5"]
+    cols = ["npi", "entity_type_code", "provider_organization_name_legal_business_name", "provider_first_line_business_mailing_address" , "provider_second_line_business_mailing_address", "provider_business_mailing_address_city_name", "provider_business_mailing_address_state_name", "zip5"]
     df = sqlContext.read.parquet(s3_input_file_location).select(["npi", "entity_type_code", "provider_organization_name_legal_business_name"]).limit(limit)
     DbUtils.insert(db_config=db_config, dataframe=df)
 
