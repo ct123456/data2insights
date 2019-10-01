@@ -29,7 +29,7 @@ if __name__ == "__main__":
         "healthcare_provider_taxonomy_code_1",
     ]
     npi_hcp_df = sqlContext.read.parquet(npi_hcp_s3_input_file_location).select(cols)
-    medicare_hcp_df = sqlContext.read.parquet(medicare_hcp_s3_input_file_location).select(cols)
+    medicare_hcp_df = sqlContext.read.parquet(medicare_hcp_s3_input_file_location)
 
     npi_hcp_df.join(medicare_hcp_df, ["npi"], how="left")
     DbUtils.insert(db_config=db_config, dataframe=npi_hcp_df)
