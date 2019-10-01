@@ -8,12 +8,12 @@ class InstitutionRepository(object):
         SELECT 
             npi, 
             entity_type_code, 
-            provider_organization_name_legal_business_name name, 
-            provider_first_line_business_mailing_address address1, 
-            provider_second_line_business_mailing_address address2, 
-            provider_business_mailing_address_city_name city, 
-            provider_business_mailing_address_state_name state, 
-            zip5 zip_code
+            provider_organization_name_legal_business_name "name", 
+            provider_first_line_business_mailing_address "address1", 
+            provider_second_line_business_mailing_address "address2", 
+            provider_business_mailing_address_city_name "city", 
+            provider_business_mailing_address_state_name "state", 
+            zip5 "zip_code"
         FROM npi_hco hco
         WHERE hco.npi='{npi}'
         """.format(
