@@ -49,7 +49,7 @@ def get_zipcode(zipcode):
     provider_repository = ProviderRepository(connection)
 
     results = zipcode_repository.get(zipcode)
-    hcp_results = provider_repository(zipcode)
+    hcp_results = provider_repository.get_by_zipcode(zipcode)
 
     connection.close()
     return Response(json.dumps({'items': results, 'providers': hcp_results}), mimetype='application/json')
