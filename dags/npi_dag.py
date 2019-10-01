@@ -61,12 +61,13 @@ aggregate_npi_by_zipcode = BashOperator(
 
 write_zipcode_to_db_spark_config = SparkConfig("write_zipcode_to_db.py")
 write_zipcode_to_db = BashOperator(
-    task_id="write_npi_hco_to_db",
+    task_id="write_zipcode_to_db",
     bash_command=write_zipcode_to_db_spark_config.bash_command,
     retries=1,
     dag=dag
 )
 
 convert_npi_to_parquet >> clean_zipcode_npi >> split_nppes_by_entity_type >> write_npi_hcp_to_db
-convert_npi_to_parquet >> clean_zipcode_npi >> split_nppes_by_entity_type >> write_npi_hco_to_db
-convert_npi_to_parquet >> clean_zipcode_npi >> split_nppes_by_entity_type >> aggregate_npi_by_zipcode >> write_zipcode_to_db
+split_nppes_by_entity_type.set_downstream(write_npi_hco_to_db)
+split_nppes_by_entity_type.set_downstream(aggregate_npi_by_zipcode)
+aggregate_npi_by_zipcode.set_downstream(write_zipcode_to_db)

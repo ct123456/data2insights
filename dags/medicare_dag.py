@@ -27,6 +27,22 @@ clean_zipcode_medicare = BashOperator(
     dag=dag,
 )
 
+split_medicare_by_entity_type_spark_config = SparkConfig("split_medicare_by_entity_type.py")
+split_medicare_by_entity_type = BashOperator(
+    task_id="split_medicare_by_entity_type",
+    bash_command=split_medicare_by_entity_type_spark_config.bash_command,
+    retries=1,
+    dag=dag,
+)
+
+aggregate_medicare_by_npi_spark_config = SparkConfig("aggregate_medicare_by_npi.py")
+aggregate_medicare_by_npi = BashOperator(
+    task_id="aggregate_medicare_by_npi",
+    bash_command=aggregate_medicare_by_npi_spark_config.bash_command,
+    retries=1,
+    dag=dag,
+)
+
 write_medicare_to_db_spark_config = SparkConfig("write_medicare_to_db.py")
 write_medicare_to_db = BashOperator(
     task_id="write_medicare_to_db",
@@ -36,3 +52,5 @@ write_medicare_to_db = BashOperator(
 )
 
 convert_medicare_to_parquet >> clean_zipcode_medicare >> write_medicare_to_db
+clean_zipcode_medicare.set_downstream(split_medicare_by_entity_type)
+split_medicare_by_entity_type.set_downstream(aggregate_medicare_by_npi)
