@@ -44,7 +44,7 @@ class ProviderRepository(object):
 
         return items
 
-    def get_by_zipcode(self, zipcode):
+    def get_by_zipcode(self, zipcode, limit=100, offset=0):
         query = """
                 SELECT 
                     npi,
@@ -59,8 +59,12 @@ class ProviderRepository(object):
                     provider_gender_code gender
                 FROM npi_hcp hcp
                 WHERE hcp.zip5='{zipcode}'
+                LIMIT {limit}
+                OFFSET {offset}
                 """.format(
-            zipcode=zipcode
+            zipcode=zipcode,
+            limit=limit,
+            offset=offset
         )
 
         cursor = self.db_connection.cursor()
