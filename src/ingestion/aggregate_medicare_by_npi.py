@@ -19,12 +19,12 @@ if __name__ == "__main__":
 
     hcp_counts_df = (
         medicare_hcp_df.groupBy("npi")
-        .agg(F.count("npi").alias("hcp_medicare_count"))
+        .agg(F.count(F.lit(1)).alias("hcp_medicare_count"))
     )
 
     hco_counts_df = (
         medicare_hco_df.groupBy("npi")
-        .agg(F.count.alias("hco_medicare_count"))
+        .agg(F.count(F.lit(1)).alias("hco_medicare_count"))
     )
 
     Utils.write_df_to_s3(hcp_counts_df, hcp_s3_output_file_location)
