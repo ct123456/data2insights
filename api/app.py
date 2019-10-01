@@ -14,6 +14,7 @@ app = Flask(__name__)
 def index():
     return "It works!"
 
+
 @app.route('/provider/<npi>')
 def get_provider(npi):
     db_config = DbConfig()
@@ -45,9 +46,13 @@ def get_zipcode(zipcode):
                                   user=db_config.user, password=db_config.password)
 
     zipcode_repository = ZipCodeRepository(connection)
+    provider_repository = ProviderRepository(connection)
+
     results = zipcode_repository.get(zipcode)
+    hcp_results = provider_repository(zipcode)
+
     connection.close()
-    return Response(json.dumps({'items': results}), mimetype='application/json')
+    return Response(json.dumps({'items': results, 'providers': hcp_results}), mimetype='application/json')
 
 
 if __name__ == '__main__':
