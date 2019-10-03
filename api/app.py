@@ -8,7 +8,7 @@ from api.models.db_config import DbConfig
 import psycopg2
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../app/template')
 
 
 @app.route('/')
