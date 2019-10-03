@@ -1,10 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>The Good Doctor - Not the show!</title>
-</head>
-<body>
+<html>
+  <head>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 75%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap_old() {
+    // The location of Uluru
+    var uluru = {lat: 42.42018, lng: -72.10615};
+    var auburn_al = {lat: 32.5389, lng: -85.49207};
 
-</body>
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 4, center: uluru});
+
+
+  //The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+  var marker1 = new google.maps.Marker({position: auburn_al, map: map, title:"Auburn Alabama"});
+
+  var data = "Auburn, Alabama!";
+  var infowindow = new google.maps.InfoWindow({content: data});
+  google.maps.event.addListener(marker1, 'click', function() {infowindow.open(map,marker1);});
+}
+
+function addMarker(lat, lng, text, map){
+    var position = {lat: lat, lng: lng};
+    var marker = new google.maps.Marker({position: position, map: map, title: text});
+
+    // var infowindow = new google.maps.InfoWindow({content: text});
+    // google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
+
+    return marker
+  }
+
+function initMap(){
+  $.getJSON('/app/data/zipcode_50000.json', function(data){
+
+      var default_zip_code = 10001
+      var zip_code_item = data.items.find(function(item){
+        return parseFloat(item.zip) == default_zip_code
+      })
+console.log(zip_code_item)
+      var center_position = {lat: 42.42018, lng: -72.10615};
+
+      if (zip_code_item) {
+        center_position = {lat: parseFloat(zip_code_item.lat), lng: parseFloat(zip_code_item.lng)}
+      }
+      //var uluru = {lat: 42.42018, lng: -72.10615};
+      //var auburn_al = {lat: 32.5389, lng: -85.49207};
+console.log(center_position)
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 14, center: center_position});
+
+
+      //The marker, positioned at Uluru
+      // var marker = new google.maps.Marker({position: uluru, map: map});
+      // var marker1 = new google.maps.Marker({position: auburn_al, map: map, title:"Auburn Alabama"});
+      //
+      // var text = "Auburn, Alabama!";
+      // var infowindow = new google.maps.InfoWindow({content: text});
+      // google.maps.event.addListener(marker1, 'click', function() {infowindow.open(map,marker1);});
+
+      data.items.forEach(function(info){
+          lat = parseFloat(info.lat)
+          lng = parseFloat(info.lng)
+          county = info.county_name
+          state = info.state_id
+          zip_code = info.zip
+          hcp_count = info.hcp_count
+          hco_count = info.hco_count
+          // console.log(lat, lng, county, state, zip_code)
+          if(hcp_count > 1000){
+            marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count, map)
+            google.maps.event.addListener(marker, 'click', function() {
+              console.log(zip_code)
+            });
+          }
+        })
+  });
+}
+
+// $.getJSON('zipcode.json', function(data){
+//   // The location of Uluru
+//   var uluru = {lat: 42.42018, lng: -72.10615};
+//   var auburn_al = {lat: 32.5389, lng: -85.49207};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(
+//       document.getElementById('map'), {zoom: 4, center: uluru});
+//
+//   function addMarker(lat, lng, text, map){
+//     var position = {lat: lat, lng: lng};
+//     var marker = new google.maps.Marker({position: position, map: map});
+//
+//     var infowindow = new google.maps.InfoWindow({content: text});
+//     google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
+//   }
+//
+//   data.items.forEach(function(info){
+//     lat = parseFloat(info.lat)
+//     lng = parseFloat(info.lng)
+//     county = info.county_name
+//     state = info.state_id
+//     zip_code = info.zip
+//     console.log(lat, lng, county, state, zip_code)
+//     addMarker(lat, lng, county + " " + state + ", " + zip_code)
+//   })
+// })
+
+
+  </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJNmTdUlUdLDvYa2wecXcm_IwIr-PTWwo&callback=initMap">
+    </script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script>
+
+    </script>
+  </body>
 </html>

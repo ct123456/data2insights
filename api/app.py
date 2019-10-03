@@ -8,7 +8,7 @@ from api.models.db_config import DbConfig
 import psycopg2
 import json
 
-app = Flask(__name__, template_folder='../app/template')
+app = Flask(__name__, template_folder='../app/templates')
 
 
 @app.route('/')
@@ -21,19 +21,19 @@ def map_view():
     return render_template('map_view.html')
 
 
-@app.route('/app/provider')
+@app.route('/app/provider/<npi>')
 def provider_view():
     return "It works: provider"
 
 
-@app.route('/app/hospital')
+@app.route('/app/hospital/<npi>')
 def hospital_view():
     return "It works: hospital"
 
 
-@app.route('/app/zipcode')
+@app.route('/app/zipcode/<zipcode>')
 def zip_code_view():
-    return "It works: zipcode"
+    return render_template('zipcode_view.html')
 
 
 @app.route('/api/provider/<npi>')
