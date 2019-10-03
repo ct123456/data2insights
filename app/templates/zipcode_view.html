@@ -29,7 +29,7 @@
     <tbody>
         {% for provider in providers %}
         <tr scope="row">
-            <td>{{ provider.npi }}</td>
+            <td><a href="/app/provider/{{ provider.npi }}">{{ provider.npi }}</a></td>
             <td>{{ provider.first_name}} {{provider.last_name}}</td>
         </tr>
         {% endfor %}
