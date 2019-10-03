@@ -1,4 +1,5 @@
 from flask import Flask, Response, request
+from flask import render_template
 from api.repositories.zip_code_repository import ZipCodeRepository
 from api.repositories.provider_repository import ProviderRepository
 from api.repositories.institution_repository import InstitutionRepository
@@ -17,7 +18,7 @@ def index():
 
 @app.route('/app')
 def map_view():
-    return "It works"
+    return render_template('map_view.html')
 
 
 @app.route('/app/provider')
