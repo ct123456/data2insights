@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from api.repositories.zip_code_repository import ZipCodeRepository
 from api.repositories.provider_repository import ProviderRepository
 from api.repositories.institution_repository import InstitutionRepository
