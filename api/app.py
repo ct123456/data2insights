@@ -40,7 +40,7 @@ def get_institution(npi):
 
 
 @app.route('/zipcode')
-def get_zipcode():
+def get_all_zipcodes():
     db_config = DbConfig()
     connection = psycopg2.connect(host=db_config.host, database='healthcare',
                                   user=db_config.user, password=db_config.password)
