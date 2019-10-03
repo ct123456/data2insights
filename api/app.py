@@ -15,6 +15,26 @@ def index():
     return "It works!"
 
 
+@app.route('/app')
+def map_view():
+    return "It works"
+
+
+@app.route('/app/provider')
+def provider_view():
+    return "It works: provider"
+
+
+@app.route('/app/hospital')
+def hospital_view():
+    return "It works: hospital"
+
+
+@app.route('/app/zipcode')
+def zip_code_view():
+    return "It works: zipcode"
+
+
 @app.route('/api/provider/<npi>')
 def get_provider(npi):
     db_config = DbConfig()
