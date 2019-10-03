@@ -44,13 +44,15 @@ def zip_code_view(zipcode):
 
     zipcode_repository = ZipCodeRepository(connection)
     provider_repository = ProviderRepository(connection)
+    institution_repository = InstitutionRepository(connection)
 
     zipcode_results = zipcode_repository.get(zipcode)
     hcp_results = provider_repository.get_by_zipcode(zipcode)
+    hco_results = institution_repository.get(zipcode)
 
     connection.close()
 
-    return render_template('zipcode_view.html', zipcode=zipcode_results, providers=hcp_results)
+    return render_template('zipcode_view.html', zipcode=zipcode_results, providers=hcp_results, institutions=hco_results)
 
 
 @app.route('/api/provider/<npi>')
