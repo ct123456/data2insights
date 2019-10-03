@@ -83,13 +83,13 @@ function initMap(){
 
 
       data.items.forEach(function(info){
-          lat = parseFloat(info.lat)
-          lng = parseFloat(info.lng)
-          county = info.county_name
-          state = info.state_id
-          zip_code = info.zip
-          hcp_count = info.hcp_count
-          hco_count = info.hco_count
+          var lat = parseFloat(info.lat)
+          var lng = parseFloat(info.lng)
+          var county = info.county_name
+          var state = info.state_id
+          var zip_code = info.zip
+          var hcp_count = info.hcp_count
+          var hco_count = info.hco_count
 
           if(hcp_count > threshold){
             marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count, map)
