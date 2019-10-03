@@ -41,12 +41,16 @@ def get_institution(npi):
 
 @app.route('/zipcode')
 def get_all_zipcodes():
+
+    limit = request.args.get('limit', 100)
+    offset = request.args.get('offset', 0)
+
     db_config = DbConfig()
     connection = psycopg2.connect(host=db_config.host, database='healthcare',
                                   user=db_config.user, password=db_config.password)
 
     zipcode_repository = ZipCodeRepository(connection)
-    results = zipcode_repository.get_all()
+    results = zipcode_repository.get_all(limit, offset)
 
     connection.close()
     return Response(json.dumps({'items': results}), mimetype='application/json')
