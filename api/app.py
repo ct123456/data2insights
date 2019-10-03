@@ -38,7 +38,7 @@ def provider_view(npi):
 
     connection.close()
 
-    return render_template('provider_view.html', provider=hcp_result)
+    return render_template('provider_view.html', provider=hcp_result[0])
 
 
 @app.route('/app/institution/<npi>')
