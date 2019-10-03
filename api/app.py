@@ -15,7 +15,7 @@ def index():
     return "It works!"
 
 
-@app.route('/provider/<npi>')
+@app.route('/api/provider/<npi>')
 def get_provider(npi):
     db_config = DbConfig()
     connection = psycopg2.connect(host=db_config.host, database='healthcare',
@@ -27,7 +27,7 @@ def get_provider(npi):
     return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
-@app.route('/institution/<npi>')
+@app.route('/api/institution/<npi>')
 def get_institution(npi):
     db_config = DbConfig()
     connection = psycopg2.connect(host=db_config.host, database='healthcare',
@@ -39,7 +39,7 @@ def get_institution(npi):
     return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
-@app.route('/zipcode')
+@app.route('/api/zipcode')
 def get_all_zipcodes():
 
     limit = request.args.get('limit', 100)
@@ -56,7 +56,7 @@ def get_all_zipcodes():
     return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
-@app.route('/zipcode/<zipcode>')
+@app.route('/api/zipcode/<zipcode>')
 def get_zipcode(zipcode):
     db_config = DbConfig()
     connection = psycopg2.connect(host=db_config.host, database='healthcare',
