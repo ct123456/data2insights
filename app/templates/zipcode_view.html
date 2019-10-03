@@ -14,11 +14,16 @@
     <h1>Zip Code: {{ zipcode[0].zip }}</h1>
     <address>
         State: {{ zipcode[0].state_id }}<br>
-        County: {{ zipcode[0].county }}<br>
+        County: {{ zipcode[0].county_name }}<br>
         FIPS: {{ zipcode[0].fips }}<br>
         Population: {{ zipcode[0].population }}<br>
     </address>
-    
+</div>
+<div>
+    <ul class="list-group">
+        {% for provider in providers %}
+      <li class="list-group-item">{{ provider.first_name}} {{ provider.last_name}}</li>
+    </ul>
 </div>
 </body>
 </html>
