@@ -39,6 +39,19 @@ def get_institution(npi):
     return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
+@app.route('/zipcode')
+def get_zipcode():
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+                                  user=db_config.user, password=db_config.password)
+
+    zipcode_repository = ZipCodeRepository(connection)
+    results = zipcode_repository.get_all()
+
+    connection.close()
+    return Response(json.dumps({'items': results, 'providers': hcp_results}), mimetype='application/json')
+
+
 @app.route('/zipcode/<zipcode>')
 def get_zipcode(zipcode):
     db_config = DbConfig()
