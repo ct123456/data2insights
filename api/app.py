@@ -38,7 +38,19 @@ def hospital_view(npi):
 
 @app.route('/app/zipcode/<zipcode>')
 def zip_code_view(zipcode):
-    return render_template('zipcode_view.html')
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+                                  user=db_config.user, password=db_config.password)
+
+    zipcode_repository = ZipCodeRepository(connection)
+    provider_repository = ProviderRepository(connection)
+
+    zipcode_results = zipcode_repository.get(zipcode)
+    hcp_results = provider_repository.get_by_zipcode(zipcode)
+
+    connection.close()
+
+    return render_template('zipcode_view.html', zipcode=zipcode_results, providers=hcp_results)
 
 
 @app.route('/api/provider/<npi>')
