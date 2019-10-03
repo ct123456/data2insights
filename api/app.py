@@ -27,17 +27,17 @@ def map_view():
 
 
 @app.route('/app/provider/<npi>')
-def provider_view():
+def provider_view(npi):
     return "It works: provider"
 
 
 @app.route('/app/hospital/<npi>')
-def hospital_view():
+def hospital_view(npi):
     return "It works: hospital"
 
 
 @app.route('/app/zipcode/<zipcode>')
-def zip_code_view():
+def zip_code_view(zipcode):
     return render_template('zipcode_view.html')
 
 
