@@ -23,7 +23,9 @@ def send_data():
 
 @app.route('/app')
 def map_view():
-    return render_template('map_view.html')
+    zipcode = request.args.get('zipcode', None)
+
+    return render_template('map_view.html', zipcode=zipcode)
 
 
 @app.route('/app/provider/<npi>')
