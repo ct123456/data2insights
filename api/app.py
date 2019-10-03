@@ -28,12 +28,22 @@ def map_view():
 
 @app.route('/app/provider/<npi>')
 def provider_view(npi):
-    return "It works: provider"
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+                                  user=db_config.user, password=db_config.password)
+
+    provider_repository = ProviderRepository(connection)
+
+    hcp_result = provider_repository.get(npi)
+
+    connection.close()
+
+    return render_template('provider_view.html', provider=hcp_result)
 
 
-@app.route('/app/hospital/<npi>')
-def hospital_view(npi):
-    return "It works: hospital"
+@app.route('/app/institution/<npi>')
+def institution_view(npi):
+    return "It works: institution"
 
 
 @app.route('/app/zipcode/<zipcode>')
