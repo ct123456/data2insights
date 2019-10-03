@@ -53,9 +53,9 @@ class InstitutionRepository(object):
             zip5 "zip_code"
         FROM npi_hco hco
         WHERE hco.zip5='{zipcode}'
+        ORDER BY npi DESC
         LIMIT {limit}
         OFFSET {offset}
-        ORDER BY npi DESC
         """.format(
             zipcode=zipcode,
             limit=limit,
