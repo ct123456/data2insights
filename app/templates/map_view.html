@@ -71,6 +71,10 @@ function initMap(){
         center_position = {lat: parseFloat(zip_code_item.lat), lng: parseFloat(zip_code_item.lng)}
       }
 
+      // The map, centered at zipcode entered
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 14, center: center_position});
+
 
       data.items.forEach(function(info){
           lat = parseFloat(info.lat)
