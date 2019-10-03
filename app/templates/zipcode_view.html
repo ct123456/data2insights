@@ -19,12 +19,20 @@
         Population: {{ zipcode[0].population }}<br>
     </address>
 </div>
-<div>
-    <ul class="list-group">
+<table>
+    <thead>
+        <tr>
+            <th scope="col">NPI</th>
+            <th scope="col">Name</th>
+        </tr>
+      </thead>
+    <tbody>
         {% for provider in providers %}
-        <li class="list-group-item">{{ provider.first_name}} {{ provider.last_name}}</li>
+        <tr scope="row">
+            <td>{{ provider.npi }}</td>
+            <td>{{ provider.first_name}} {{provider.last_name}}</td>
+        </tr>
         {% endfor %}
-    </ul>
-</div>
+</table>
 </body>
 </html>
