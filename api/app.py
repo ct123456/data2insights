@@ -1,5 +1,5 @@
 from flask import Flask, Response, request
-from flask import render_template
+from flask import render_template, send_file
 from api.repositories.zip_code_repository import ZipCodeRepository
 from api.repositories.provider_repository import ProviderRepository
 from api.repositories.institution_repository import InstitutionRepository
@@ -8,12 +8,17 @@ from api.models.db_config import DbConfig
 import psycopg2
 import json
 
-app = Flask(__name__, template_folder='../app/templates', static_url_path='/app/data')
+app = Flask(__name__, template_folder='../app/templates', static_url_path='')
 
 
 @app.route('/')
 def index():
     return "It works!"
+
+
+@app.route('/data/zipcode_50000.json')
+def send_data():
+    return send_file('/home/ubuntu/data2insights/api/data/zipcode_50000.json')
 
 
 @app.route('/app')
