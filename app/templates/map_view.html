@@ -61,6 +61,12 @@ function initMap(){
     {% else %}
       var threshold = 1000
     {% endif %}
+
+    {% if zoom_level %}
+      var zoom_level = {{ zoom_level }}
+    {% else %}
+      var zoom_level = 14
+    {% endif %}
       var zip_code_item = data.items.find(function(item){
         return parseFloat(item.zip) == default_zip_code
       })
@@ -73,7 +79,7 @@ function initMap(){
 
       // The map, centered at zipcode entered
       var map = new google.maps.Map(
-          document.getElementById('map'), {zoom: 14, center: center_position});
+          document.getElementById('map'), {zoom: zoom_level, center: center_position});
 
 
       data.items.forEach(function(info){
