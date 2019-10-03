@@ -39,7 +39,9 @@ function initMap_old() {
 
 function addMarker(lat, lng, text, map){
     var position = {lat: lat, lng: lng};
-    var marker = new google.maps.Marker({position: position, map: map, title: text});
+    var blue_icon = { url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
+    var marker = new google.maps.Marker({position: position, map: map, title: text, icon: blue_icon});
+
 
     // var infowindow = new google.maps.InfoWindow({content: text});
     // google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
