@@ -26,7 +26,7 @@ def map_view():
     zipcode = request.args.get('zipcode', 10001)
     threshold = request.args.get('threshold', 1000)
 
-    return render_template('map_view.html', zipcode=zipcode, threshold)
+    return render_template('map_view.html', zipcode=zipcode, threshold=threshold)
 
 
 @app.route('/app/provider/<npi>')
