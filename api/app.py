@@ -43,7 +43,17 @@ def provider_view(npi):
 
 @app.route('/app/institution/<npi>')
 def institution_view(npi):
-    return "It works: institution"
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+                                  user=db_config.user, password=db_config.password)
+
+    institution_repository = InstitutionRepository(connection)
+
+    hco_result = institution_repository.get(npi)
+
+    connection.close()
+
+    return render_template('institution_view.html', institution=hco_result[0])
 
 
 @app.route('/app/zipcode/<zipcode>')
