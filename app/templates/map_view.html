@@ -45,12 +45,14 @@ function addMarker(lat, lng, text, map, type){
     var pink_icon = { url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png" }
     var purple_icon = { url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png" }
 
-    switch(type):
+    switch(type){
       case 1: icon= blue_icon; break;
       case 2: icon= yellow_icon; break;
       case 3: icon= pink_icon; break;
       case 4: icon= purple_icon; break;
       case 5: icon= red_icon; break;
+      default: blue_icon;
+    }
 
     var marker = new google.maps.Marker({position: position, map: map, title: text, icon: icon});
 
