@@ -49,7 +49,7 @@ def get_all_zipcodes():
     results = zipcode_repository.get_all()
 
     connection.close()
-    return Response(json.dumps({'items': results, 'providers': hcp_results}), mimetype='application/json')
+    return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
 @app.route('/zipcode/<zipcode>')
