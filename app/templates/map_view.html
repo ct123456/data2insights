@@ -95,7 +95,7 @@ function initMap(){
             marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count, map)
             google.maps.event.addListener(marker, 'click', function() {
 
-              url="/app/zipcode/" + zipcode
+              url="/app/zipcode/" + zip_code
               console.log(url)
               window.open(url, '_blank');
             });
