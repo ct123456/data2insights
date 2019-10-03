@@ -62,6 +62,7 @@ class ProviderRepository(object):
                     hcp_medicare_count medicare_count
                 FROM provider hcp
                 WHERE hcp.zip5='{zipcode}'
+                ORDER BY medicare_count DESC, npi ASC
                 LIMIT {limit}
                 OFFSET {offset}
                 """.format(

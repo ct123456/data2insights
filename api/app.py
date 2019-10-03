@@ -73,8 +73,8 @@ def zip_code_view(zipcode):
     institution_repository = InstitutionRepository(connection)
 
     zipcode_results = zipcode_repository.get(zipcode)
-    hcp_results = provider_repository.get_by_zipcode(zipcode)
-    hco_results = institution_repository.get_by_zipcode(zipcode)
+    hcp_results = provider_repository.get_by_zipcode(zipcode, limit=20)
+    hco_results = institution_repository.get_by_zipcode(zipcode, limit=20)
 
     connection.close()
 
