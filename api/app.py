@@ -26,7 +26,7 @@ def map_view():
     zipcode = request.args.get('zipcode', 10001)
     threshold = request.args.get('threshold', 1000)
 
-    zoom_level = 14 if zipcode else 5
+    zoom_level = 14 if zipcode is not 10001 else 4
     zoom_level = request.args.get('zoom', zoom_level)
 
     return render_template('map_view.html', zipcode=zipcode, threshold=threshold, zoom_level=zoom_level)

@@ -65,7 +65,7 @@ function initMap(){
     {% if zoom_level %}
       var zoom_level = {{ zoom_level }}
     {% else %}
-      var zoom_level = 14
+      var zoom_level = 4
     {% endif %}
       var zip_code_item = data.items.find(function(item){
         return parseFloat(item.zip) == default_zip_code
