@@ -4,7 +4,17 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJNmTdUlUdLDvYa2wecXcm_IwIr-PTWwo&callback=initMap"></script>
 
 <!--The div element for the map -->
-    <div id="map"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div id="map"></div>
+            </div>
+            <div class="col">
+                <input class="form-control mr-sm-2" type="search" placeholder="Enter Zip Code" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </div>
+    </div>
     <script>
 // Initialize and add the map
 function initMap_old() {
