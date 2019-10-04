@@ -11,22 +11,18 @@ import json
 app = Flask(__name__, template_folder='../app/templates', static_url_path='')
 
 
-@app.route('/')
-def index():
-    return "It works!"
-
-
 @app.route('/data/zipcode_50000.json')
 def send_data():
     return send_file('/home/ubuntu/data2insights/api/data/zipcode_50000.json')
 
 
+@app.route('/')
 @app.route('/app')
 def map_view():
-    zipcode = request.args.get('zipcode', 10001)
+    zipcode = request.args.get('zipcode', 67214)
     threshold = request.args.get('threshold', 1000)
 
-    zoom_level = 14 if zipcode is not 10001 else 4
+    zoom_level = 14 if zipcode is not 67214 else 4
     zoom_level = request.args.get('zoom', zoom_level)
 
     return render_template('map_view.html', zipcode=zipcode, threshold=threshold, zoom_level=zoom_level)
