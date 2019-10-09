@@ -31,7 +31,7 @@ def map_view():
 @app.route('/app/provider/<npi>')
 def provider_view(npi):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     provider_repository = ProviderRepository(connection)
@@ -46,7 +46,7 @@ def provider_view(npi):
 @app.route('/app/institution/<npi>')
 def institution_view(npi):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     institution_repository = InstitutionRepository(connection)
@@ -61,7 +61,7 @@ def institution_view(npi):
 @app.route('/app/zipcode/<zipcode>')
 def zip_code_view(zipcode):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     zipcode_repository = ZipCodeRepository(connection)
@@ -80,7 +80,7 @@ def zip_code_view(zipcode):
 @app.route('/api/provider/<npi>')
 def get_provider(npi):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     provider_repository = ProviderRepository(connection)
@@ -92,7 +92,7 @@ def get_provider(npi):
 @app.route('/api/institution/<npi>')
 def get_institution(npi):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     institution_repository = InstitutionRepository(connection)
@@ -108,7 +108,7 @@ def get_all_zipcodes():
     offset = request.args.get('offset', 0)
 
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     zipcode_repository = ZipCodeRepository(connection)
@@ -121,7 +121,7 @@ def get_all_zipcodes():
 @app.route('/api/zipcode/<zipcode>')
 def get_zipcode(zipcode):
     db_config = DbConfig()
-    connection = psycopg2.connect(host=db_config.host, database='healthcare',
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
                                   user=db_config.user, password=db_config.password)
 
     zipcode_repository = ZipCodeRepository(connection)

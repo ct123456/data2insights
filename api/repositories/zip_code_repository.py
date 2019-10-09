@@ -5,20 +5,18 @@ class ZipCodeRepository(object):
     def get_all(self, limit=100, offset=0):
         query = """
                 SELECT 
-                    zip, 
-                    county_name, 
-                    population, 
-                    city, 
-                    state_id, 
+                    zip_code, 
+                    state, 
+                    latitude, 
+                    longitude,  
                     county_fips, 
+                    county_name
                     substring(county_fips, 1, 2) state_code, 
-                    substring(county_fips, 2, 3) fips, 
-                    lat, 
-                    lng, 
-                    hcp_count, 
-                    hco_count
-                FROM zipcode z
-                JOIN uszips u ON z.zip5=u.zip
+                    substring(county_fips, 2, 3) fips,  
+                    provider_count, 
+                    medicare_count,
+                    score
+                FROM neighborhood z
                 LIMIT {limit}
                 OFFSET {offset}
                 """.format(limit=limit, offset=offset)
@@ -30,18 +28,18 @@ class ZipCodeRepository(object):
         for row in results:
             items.append(
                 {
-                    "zip": row[0],
-                    "county_name": row[1],
-                    "population": row[2],
-                    "city": row[3],
-                    "state_id": row[4],
-                    "county_fips": row[5],
+                    "zip_code": row[0],
+                    "state": row[1],
+                    "lat": row[2],
+                    "lng": row[3],
+                    "county_fips": row[4],
+                    "county_name": row[5],
                     "state_code": row[6],
                     "fips": row[7],
-                    "lat": row[8],
-                    "lng": row[9],
-                    "hcp_count": row[10],
-                    "hco_count": row[11],
+                    "hcp_count": row[8],
+                    "hco_count": row[9],
+                    "medicare_count": row[10],
+                    "score": row[11]
                 }
             )
 
@@ -51,21 +49,19 @@ class ZipCodeRepository(object):
 
         query = """
         SELECT 
-            zip, 
-            county_name, 
-            population, 
-            city, 
-            state_id, 
+            zip_code, 
+            state, 
+            latitude, 
+            longitude,  
             county_fips, 
+            county_name
             substring(county_fips, 1, 2) state_code, 
-            substring(county_fips, 2, 3) fips, 
-            lat, 
-            lng, 
-            hcp_count, 
-            hco_count
-        FROM zipcode z
-        JOIN uszips u ON z.zip5=u.zip
-        WHERE u.zip='{zipcode}'
+            substring(county_fips, 2, 3) fips,  
+            provider_count, 
+            medicare_count,
+            score
+        FROM neighborhood z
+        WHERE u.zip_code='{zipcode}'
         """.format(
             zipcode=zipcode
         )
@@ -77,18 +73,18 @@ class ZipCodeRepository(object):
         for row in results:
             items.append(
                 {
-                    "zip": row[0],
-                    "county_name": row[1],
-                    "population": row[2],
-                    "city": row[3],
-                    "state_id": row[4],
-                    "county_fips": row[5],
+                    "zip_code": row[0],
+                    "state": row[1],
+                    "lat": row[2],
+                    "lng": row[3],
+                    "county_fips": row[4],
+                    "county_name": row[5],
                     "state_code": row[6],
                     "fips": row[7],
-                    "lat": row[8],
-                    "lng": row[9],
-                    "hcp_count": row[10],
-                    "hco_count": row[11],
+                    "hcp_count": row[8],
+                    "hco_count": row[9],
+                    "medicare_count": row[10],
+                    "score": row[11]
                 }
             )
 
