@@ -61,7 +61,7 @@ class ProviderRepository(object):
                     score,
                     zip_code
                 FROM provider hcp
-                WHERE hcp.zip5='{zipcode}'
+                WHERE hcp.zip_code='{zipcode}'
                 ORDER BY score DESC, npi ASC
                 LIMIT {limit}
                 OFFSET {offset}
