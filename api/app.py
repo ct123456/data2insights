@@ -4,6 +4,8 @@ from api.repositories.zip_code_repository import ZipCodeRepository
 from api.repositories.provider_repository import ProviderRepository
 from api.repositories.institution_repository import InstitutionRepository
 from api.repositories.medicare_repository import MedicareRepository
+from api.repositories.provider_address_repository import ProviderAddressRepository
+from api.repositories.institution_address_repository import InstitutionAddressRepository
 from api.models.db_config import DbConfig
 
 import psycopg2
@@ -144,6 +146,34 @@ def get_medicare_by_npi(npi):
     medicare_repository = MedicareRepository(connection)
 
     results = medicare_repository.get_by_npi(npi)
+
+    connection.close()
+    return Response(json.dumps({'items': results}), mimetype='application/json')
+
+
+@app.route('/api/provider_address/<npi>')
+def get_provider_address_by_npi(npi):
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
+                                  user=db_config.user, password=db_config.password)
+
+    provider_address_repository = ProviderAddressRepository(connection)
+
+    results = provider_address_repository.get_by_npi(npi)
+
+    connection.close()
+    return Response(json.dumps({'items': results}), mimetype='application/json')
+
+
+@app.route('/api/institution_address/<npi>')
+def get_institution_address_by_npi(npi):
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
+                                  user=db_config.user, password=db_config.password)
+
+    institution_address_repository = InstitutionAddressRepository(connection)
+
+    results = institution_address_repository.get_by_npi(npi)
 
     connection.close()
     return Response(json.dumps({'items': results}), mimetype='application/json')
