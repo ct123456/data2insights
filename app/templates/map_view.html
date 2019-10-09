@@ -65,7 +65,7 @@ function initMap(){
       var zoom_level = 4
     {% endif %}
       var zip_code_item = data.items.find(function(item){
-        return parseFloat(item.zip) == default_zip_code
+        return parseFloat(item.zip_code) == default_zip_code
       })
 
       var center_position = {lat: 42.42018, lng: -72.10615};
