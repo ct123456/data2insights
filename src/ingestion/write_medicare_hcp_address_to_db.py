@@ -5,22 +5,26 @@ import pyspark.sql.functions as F
 
 if __name__ == "__main__":
 
+    MEDICARE_SOURCE_ID = 2
+
     spark = SparkSession.builder.appName("data2insights").getOrCreate()
     sqlContext = SQLContext(spark)
 
-    db_config = DbConfig(db_name="healthcare2", db_table="public.medicare")
+    db_config = DbConfig(db_name="healthcare2", db_table="public.provider_address")
 
     s3_input_file_location = (
-        "s3a://data2insights/Medicare/parquet/medicare_clean_zipcode"
+        "s3a://data2insights/Medicare/parquet/medicare_hcp"
     )
 
     limit = 10000000
     cols = [
         F.col("npi").alias("npi"),
-        F.col("hcpcs_code").alias("hcpcs_code"),
-        F.col("hcpcs_description").alias("hcpcs_description"),
-        F.col("line_srvc_cnt").alias("line_service_count"),
+        F.col("nppes_provider_street1").alias("address1"),
+        F.col("nppes_provider_street2").alias("address2"),
+        F.col("nppes_provider_city").alias("city"),
+        F.col("nppes_provider_state").alias("state"),
         F.col("zip5").alias("zip_code"),
+        F.lit(MEDICARE_SOURCE_ID).alias("source_id")
     ]
 
     df = sqlContext.read.parquet(s3_input_file_location).select(cols).limit(limit)

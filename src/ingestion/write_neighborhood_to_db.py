@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     db_config = DbConfig(db_name="healthcare2", db_table="public.neighborhood")
 
-    s3_input_file_location = "s3a://data2insights/zipcode/parquet/combined_neighborhood_master"
+    s3_input_file_location = "s3a://data2insights/zipcode/parquet/scored_neighborhood_master"
 
     cols = [
         F.col("zip_code").alias("zip_code"),
