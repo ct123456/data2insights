@@ -57,12 +57,16 @@ def institution_view(npi):
                                   user=db_config.user, password=db_config.password)
 
     institution_repository = InstitutionRepository(connection)
+    institution_address_repository = InstitutionAddressRepository(connection)
+    medicare_repository = MedicareRepository(connection)
 
     hco_result = institution_repository.get(npi)
+    hco_address_result = institution_address_repository.get_by_npi(npi)
+    medicare_results = medicare_repository.get_by_npi(npi)
 
     connection.close()
 
-    return render_template('institution_view.html', institution=hco_result[0])
+    return render_template('institution_view.html', institution=hco_result[0], addresses=hco_address_result, medicare=medicare_results)
 
 
 @app.route('/app/zipcode/<zipcode>')
