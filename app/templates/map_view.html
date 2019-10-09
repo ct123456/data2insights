@@ -2,7 +2,7 @@
 
 {% block content %}
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJNmTdUlUdLDvYa2wecXcm_IwIr-PTWwo&callback=initMap"></script>
-
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <!--The div element for the map -->
     <div class="container">
         <div class="row">
@@ -17,6 +17,9 @@
         </div>
     </div>
     <script>
+
+
+
 // Initialize and add the map
 function addMarker(lat, lng, text, map, type){
     var position = {lat: lat, lng: lng};
@@ -36,7 +39,6 @@ function addMarker(lat, lng, text, map, type){
     }
 
     var marker = new google.maps.Marker({position: position, map: map, title: text, icon: icon});
-
 
     // var infowindow = new google.maps.InfoWindow({content: text});
     // google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
@@ -78,9 +80,7 @@ function initMap(){
       var map = new google.maps.Map(
           document.getElementById('map'), {zoom: zoom_level, center: center_position});
 
-<!--      var markerCluster = new MarkerClusterer(map, markers,-->
-<!--            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});-->
-<!--      }-->
+      var markers = []
 
 
       data.items.forEach(function(info){
@@ -101,8 +101,15 @@ function initMap(){
               url="/app/zipcode/" + zip_code
               window.open(url, '_blank');
             });
+
+            markers.push(marker)
           }
         })
+
+
+    var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    }
   });
 }
 
