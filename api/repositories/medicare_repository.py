@@ -5,13 +5,14 @@ class MedicareRepository(object):
     def get_by_npi(self, npi, limit=100, offset=0):
         query = """
                 SELECT 
-                    npi,
-                    hcpcs_code,
-                    hcpcs_description,
-                    line_service_count,
-                    zip_code
+                    MAX(npi) npi,
+                    MAX(hcpcs_code) hcpcs_code,
+                    MAX(hcpcs_description) hcpcs_description,
+                    SUM(line_service_count) line_service_count,
+                    MAX(zip_code) zip_code
                 FROM medicare m
                 WHERE m.npi='{npi}'
+                GROUP BY hcpcs_code
                 ORDER BY hcpcs_code DESC
                 LIMIT {limit}
                 OFFSET {offset}
