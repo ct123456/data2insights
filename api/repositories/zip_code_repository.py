@@ -14,6 +14,7 @@ class ZipCodeRepository(object):
                     substring(county_fips, 1, 2) state_code, 
                     substring(county_fips, 2, 3) fips,  
                     provider_count, 
+                    institution_count,
                     medicare_count,
                     score
                 FROM neighborhood z
@@ -58,6 +59,7 @@ class ZipCodeRepository(object):
             substring(county_fips, 1, 2) state_code, 
             substring(county_fips, 2, 3) fips,  
             provider_count, 
+            institution_count,
             medicare_count,
             score
         FROM neighborhood z
