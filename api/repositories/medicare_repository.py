@@ -9,7 +9,7 @@ class MedicareRepository(object):
                     hcpcs_code,
                     hcpcs_description,
                     line_service_count,
-                    zip_code,
+                    zip_code
                 FROM medicare m
                 WHERE m.npi='{npi}'
                 ORDER BY hcpcs_code DESC
