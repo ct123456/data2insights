@@ -38,12 +38,16 @@ def provider_view(npi):
                                   user=db_config.user, password=db_config.password)
 
     provider_repository = ProviderRepository(connection)
+    provider_address_repository = ProviderAddressRepository(connection)
+    medicare_repository = MedicareRepository(connection)
 
     hcp_result = provider_repository.get(npi)
+    hcp_address_result = provider_address_repository.get_by_npi(npi)
+    medicare_results = medicare_repository.get_by_npi(npi)
 
     connection.close()
 
-    return render_template('provider_view.html', provider=hcp_result[0])
+    return render_template('provider_view.html', provider=hcp_result[0], addresses=hcp_address_result, medicare=medicare_results)
 
 
 @app.route('/app/institution/<npi>')
