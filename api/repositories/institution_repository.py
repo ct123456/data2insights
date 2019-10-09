@@ -44,7 +44,7 @@ class InstitutionRepository(object):
             "zip_code"
         FROM institution hco
         WHERE hco.zip_code='{zipcode}'
-        ORDER BY npi DESC
+        ORDER BY score DESC, npi ASC
         LIMIT {limit}
         OFFSET {offset}
         """.format(
