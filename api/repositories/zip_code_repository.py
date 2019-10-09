@@ -10,7 +10,7 @@ class ZipCodeRepository(object):
                     latitude, 
                     longitude,  
                     county_fips, 
-                    county_name
+                    county_name,
                     substring(county_fips, 1, 2) state_code, 
                     substring(county_fips, 2, 3) fips,  
                     provider_count, 
@@ -54,7 +54,7 @@ class ZipCodeRepository(object):
             latitude, 
             longitude,  
             county_fips, 
-            county_name
+            county_name,
             substring(county_fips, 1, 2) state_code, 
             substring(county_fips, 2, 3) fips,  
             provider_count, 
