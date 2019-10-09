@@ -4,7 +4,7 @@ class InstitutionAddressRepository(object):
 
     def get_by_npi(self, npi, limit=100, offset=0):
         query = """
-                SELECT 
+                SELECT DISTINCT
                     npi,
                     address1,
                     address2,
