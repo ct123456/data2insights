@@ -61,7 +61,7 @@ class ZipCodeRepository(object):
             medicare_count,
             score
         FROM neighborhood z
-        WHERE u.zip_code='{zipcode}'
+        WHERE z.zip_code='{zipcode}'
         """.format(
             zipcode=zipcode
         )
