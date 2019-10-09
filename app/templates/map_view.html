@@ -78,19 +78,24 @@ function initMap(){
       var map = new google.maps.Map(
           document.getElementById('map'), {zoom: zoom_level, center: center_position});
 
+<!--      var markerCluster = new MarkerClusterer(map, markers,-->
+<!--            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});-->
+<!--      }-->
+
 
       data.items.forEach(function(info){
           var lat = parseFloat(info.lat)
           var lng = parseFloat(info.lng)
           var county = info.county_name
-          var state = info.state_id
-          var zip_code = info.zip
+          var state = info.state
+          var zip_code = info.zip_code
           var hcp_count = info.hcp_count
           var hco_count = info.hco_count
+          var score = info.score
 
           if(hcp_count > threshold){
-            type = Math.floor(Math.log10(hcp_count))
-            marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count, map, type)
+            type = Math.floor(Math.log10(score))
+            marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count + " Score: " + score, map, type)
             google.maps.event.addListener(marker, 'click', function() {
 
               url="/app/zipcode/" + zip_code
