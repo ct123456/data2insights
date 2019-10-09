@@ -15,7 +15,7 @@ class ProviderRepository(object):
             specialty,
             gender,
             medicare_count,
-            score,
+            CASE WHEN score > 0 THEN score ELSE 0 END score,
             zip_code
         FROM provider hcp
         WHERE hcp.npi='{npi}'
@@ -58,7 +58,7 @@ class ProviderRepository(object):
                     specialty,
                     gender,
                     medicare_count,
-                    score,
+                    CASE WHEN score > 0 THEN score ELSE 0 END score,
                     zip_code
                 FROM provider hcp
                 WHERE hcp.zip_code='{zipcode}'

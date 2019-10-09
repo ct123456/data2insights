@@ -9,7 +9,7 @@ class InstitutionRepository(object):
             "npi", 
             "name", 
             "medicare_count",
-            "score",
+            CASE WHEN score > 0 THEN score ELSE 0 END "score",
             "zip_code"
         FROM institution hco
         WHERE hco.npi='{npi}'
@@ -40,7 +40,7 @@ class InstitutionRepository(object):
             "npi", 
             "name", 
             "medicare_count",
-            "score",
+            CASE WHEN score > 0 THEN score ELSE 0 END "score",
             "zip_code"
         FROM institution hco
         WHERE hco.zip_code='{zipcode}'
