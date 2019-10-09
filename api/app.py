@@ -3,6 +3,7 @@ from flask import render_template, send_file
 from api.repositories.zip_code_repository import ZipCodeRepository
 from api.repositories.provider_repository import ProviderRepository
 from api.repositories.institution_repository import InstitutionRepository
+from api.repositories.medicare_repository import MedicareRepository
 from api.models.db_config import DbConfig
 
 import psycopg2
@@ -132,6 +133,20 @@ def get_zipcode(zipcode):
 
     connection.close()
     return Response(json.dumps({'items': results, 'providers': hcp_results}), mimetype='application/json')
+
+
+@app.route('/api/medicare/<npi>')
+def get_medicare_by_npi(npi):
+    db_config = DbConfig()
+    connection = psycopg2.connect(host=db_config.host, database='healthcare2',
+                                  user=db_config.user, password=db_config.password)
+
+    medicare_repository = MedicareRepository(connection)
+
+    results = medicare_repository.get_by_npi(npi)
+
+    connection.close()
+    return Response(json.dumps({'items': results}), mimetype='application/json')
 
 
 if __name__ == '__main__':
