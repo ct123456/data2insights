@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJNmTdUlUdLDvYa2wecXcm_IwIr-PTWwo&callback=initMap"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJNmTdUlUdLDvYa2wecXcm_IwIr-PTWwo&callback=initMap"></script>
 <!--The div element for the map -->
     <div class="container">
         <div class="row">
@@ -108,7 +109,7 @@ function initMap(){
 
 
     var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-    
+
   });
 }
 
