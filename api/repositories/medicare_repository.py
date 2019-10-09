@@ -13,7 +13,7 @@ class MedicareRepository(object):
                 FROM medicare m
                 WHERE m.npi='{npi}'
                 GROUP BY hcpcs_code
-                ORDER BY hcpcs_code DESC
+                ORDER BY line_service_count DESC, hcpcs_code ASC
                 LIMIT {limit}
                 OFFSET {offset}
                 """.format(
