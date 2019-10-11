@@ -42,6 +42,7 @@ function addMarker(lat, lng, text, map, type){
       case 2: icon= pink_icon; break;
       case 3: icon= purple_icon; break;
       case 4: icon= red_icon; break;
+      case 5: icon= red_icon; break;
       default: blue_icon;
     }
 
@@ -101,7 +102,7 @@ function initMap(){
           var score = info.score
 
           if(hcp_count > threshold){
-            type = Math.floor(score / 20)
+            type = Math.floor(score - 0.01/ 20)
             marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count + " Score: " + score, map, type)
             google.maps.event.addListener(marker, 'click', function() {
 
