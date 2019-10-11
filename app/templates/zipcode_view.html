@@ -1,15 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <h1>Zip Code: {{ zipcode[0].zip_code }}</h1>
-    <address>
-        State: {{ zipcode[0].state }}<br>
-        County: {{ zipcode[0].county_name }}<br>
-        FIPS: {{ zipcode[0].fips }}<br>
-        Population: {{ zipcode[0].population }}<br>
-    </address>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <h3>Zip Code: {{ zipcode[0].zip_code }}</h3>
+            <address>
+                State: {{ zipcode[0].state }}<br>
+                County: {{ zipcode[0].county_name }}<br>
+            </address>
+        </div>
+        <div class="col-8">
+            <div></div>
+        </div>
+    </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col">
