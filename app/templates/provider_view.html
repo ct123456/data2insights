@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+<!--        <div class="col-4"></div>-->
+        <div class="col-12">
+            <h3>{{ provider.first_name }} {{ provider.middle_name }} {{ provider.last_name }}</h3>
+            <p> NPI: {{ provider.npi}} </p>
+            <p> {{ provider.credentials}} </p>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col">
+            <h4>Locations</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Zip Code</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for address in addresses %}
+                    <tr scope="row">
+                        <td>{{ address.address1}}</td>
+                        <td>{{ address.city}} </td>
+                        <td>{{ address.state}} </td>
+                        <td>{{ address.zip_code}} </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <h4>Treatment</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">HCPCS Code</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for medicare_item in medicare %}
+                    <tr scope="row">
+                        <td>{{ medicare_item.hcpcs_code}}</td>
+                        <td>{{ medicare_item.hcpcs_description}} </td>
+                        <td>{{ medicare_item.line_service_count}} </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
