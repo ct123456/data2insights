@@ -102,7 +102,7 @@ function initMap(){
           var score = info.score
 
           if(hcp_count > threshold){
-            type = Math.floor(score - 0.01/ 20)
+            type = Math.floor((score - 0.01)/ 20)
             marker = addMarker(lat, lng, county + " " + state + ", " + zip_code + " Providers: " + hcp_count + " Hospitals: " + hco_count + " Score: " + score, map, type)
             google.maps.event.addListener(marker, 'click', function() {
 
