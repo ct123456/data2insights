@@ -1,53 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div>
-        <h1>{{ institution.name }}</h1>
-        <p> NPI: {{ institution.npi}} </p>
-        <address>
-            {{ institution.address1 }}<br>
-            {{ institution.city }} {{ institution.state }} {{ institution.zip_code }}<br>
-        </address>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3>{{ institution.name }}</h3>
+            <p> NPI: {{ institution.npi}} </p>
+        </div>
     </div>
-     <div class="col">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">Address</th>
-                    <th scope="col">City</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Zip Code</th>
-                </tr>
-              </thead>
-            <tbody>
-                {% for address in addresses %}
-                <tr scope="row">
-                    <td>{{ address.address1}}</td>
-                    <td>{{ address.city}} </td>
-                    <td>{{ address.state}} </td>
-                    <td>{{ address.zip_code}} </td>
-                </tr>
-                {% endfor %}
-        </table>
-    </div>
+    <br />
 
-    <div class="col">
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">HCPCS Code</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Count</th>
-                </tr>
-              </thead>
-            <tbody>
-                {% for medicare_item in medicare %}
-                <tr scope="row">
-                    <td>{{ medicare_item.hcpcs_code}}</td>
-                    <td>{{ medicare_item.hcpcs_description}} </td>
-                    <td>{{ medicare_item.line_service_count}} </td>
-                </tr>
-                {% endfor %}
-        </table>
+    <div class="row">
+         <div class="col">
+            <h4>Locations</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Zip Code</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for address in addresses %}
+                    <tr scope="row">
+                        <td>{{ address.address1}}</td>
+                        <td>{{ address.city}} </td>
+                        <td>{{ address.state}} </td>
+                        <td>{{ address.zip_code}} </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
     </div>
+    <br />
+
+    <div class="row">
+        <div class="col">
+            <h4>Treatment</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">HCPCS Code</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Count</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for medicare_item in medicare %}
+                    <tr scope="row">
+                        <td>{{ medicare_item.hcpcs_code}}</td>
+                        <td>{{ medicare_item.hcpcs_description}} </td>
+                        <td>{{ medicare_item.line_service_count}} </td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
