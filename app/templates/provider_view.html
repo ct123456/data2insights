@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col"></div>
-        <div class="col">
+        <div class="col-4"></div>
+        <div class="col-8">
             <h3>{{ provider.first_name }} {{ provider.middle_name }} {{ provider.last_name }}</h3>
             <p> NPI: {{ provider.npi}} </p>
             <p> {{ provider.credentials}} </p>
@@ -14,6 +14,7 @@
             </address>
         </div>
     </div>
+    <br />
 
     <div class="row">
         <div class="col">
@@ -39,6 +40,7 @@
             </table>
         </div>
     </div>
+    <br />
     <div class="row">
         <div class="col">
             <h4>Treatment</h4>
